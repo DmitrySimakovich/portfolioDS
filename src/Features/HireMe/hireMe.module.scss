@@ -1,0 +1,19 @@
+@import "src/Common/Styles/variables";
+@import "src/Common/Styles/mixins";
+
+.hireMe {
+  min-width: 100%;
+  min-height: $base*90;
+  display: flex;
+
+  @include flex_direction(column);
+  @include align_items(center);
+  @include justify_content(space-evenly);
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/IMG_9908 (2).JPG");
+  @include background_size(cover);
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 50% 55%;
+}

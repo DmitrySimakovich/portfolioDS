@@ -1,0 +1,123 @@
+@import "src/Common/Styles/mixins";
+@import "src/Common/Styles/variables";
+
+
+.nav_container {
+  display: flex;
+  @include align_items(center);
+  @include justify_content(space-between);
+  @include box_sizing(border-box);
+  margin-top: $base*2;
+  margin-bottom: $base*2;
+}
+
+.nav_logo {
+  cursor: pointer;
+  font-size: $fs2-md;
+  font-weight: $fw-light;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: .3rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: $color_divider;
+  }
+}
+
+.nav_list {
+  display: flex;
+
+  .nav_list__item {
+    @include openSans;
+
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+
+    color: #fff;
+    padding-left: 15px;
+    letter-spacing: .2rem;
+
+    cursor: pointer;
+
+    &:not(:last-child) {
+      padding-right: 15px;
+    }
+
+    &:hover {
+      color: $color_elements;
+    }
+  }
+
+}
+
+.sidebar {
+  z-index: 100;
+  display: none;
+}
+
+.sidebar_box {
+  color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  padding-top: 120px;
+
+  background-color: darken($color_bgc__secondary, 5%);
+  @include transition(all, $transition);
+
+
+  &_open {
+    width: 50%;
+    @include transition(all, $transition);
+  }
+
+  &__list {
+    height: 30%;
+    display: flex;
+    @include flex_direction(column);
+    @include align_items(center);
+    @include justify_content(space-between);
+
+    a {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      position: relative;
+      &::after {
+        @include divider_sideBar()
+      }
+    }
+
+
+
+    a:hover {
+      color: $color_elements;
+      cursor: pointer;
+    }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .nav_list {
+    display: none !important;
+  }
+
+  .sidebar {
+    display: block !important;
+  }
+}
+
+.active {
+  color: $color_elements !important;
+}
+

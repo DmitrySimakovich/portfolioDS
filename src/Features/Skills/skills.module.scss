@@ -1,0 +1,156 @@
+@import "src/Common/Styles/variables";
+@import "src/Common/Styles/mixins";
+
+.row {
+  display: flex;
+  @include flex_wrap(nowrap);
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-top: 50px;
+
+  .item {
+    width: 100%;
+    max-width: 33.33333%;
+    min-height: 270px;
+    max-height: 270px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &_content {
+      height: 100%;
+      @include border_radius(2px);
+      @include background_size(cover);
+
+      background-position: center;
+      @include background_origin(content-box);
+
+
+      display: flex;
+      @include justify_content(center);
+      @include align_items(center);
+
+      span {
+        @include border_radius(5px);
+        cursor: default;
+        @include openSans;
+        font-size: $fs2-xs;
+        font-weight: $fw-medium;
+        color: #fff;
+
+        margin: 0;
+        padding: $base*3 $base*5;
+        background-color: $color_bgc__secondary;
+      }
+    }
+  }
+}
+
+.flip {
+  position: relative;
+  @include transform_style (preserve-3d);
+  @include transition(all, $transition_long);
+
+
+  &:hover {
+    @include transform(rotateX(180deg));
+  }
+}
+
+.flip_face {
+  position: absolute;
+  @include backface_visibility(hidden);
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  background: $color_elements;
+  color: #fff;
+  @include transform(rotateX(180deg));
+  @include backface_visibility(hidden);
+
+  .item_icon {
+    margin-top: $base*10;
+    display: flex;
+    @include justify_content(center);
+  }
+
+  .item_title {
+    padding-top: $base*5;
+    display: flex;
+    @include justify_content(center);
+
+
+    h1 {
+      @include openSans;
+      font-size: $fs2-lg;
+      font-weight: $fw-bold;
+    }
+  }
+
+  .item_description {
+    padding-top: $base;
+    display: flex;
+    @include justify_content(center);
+    text-align: center;
+
+    p {
+      margin: 0;
+      padding: 0 15px 15px 15px;
+      @include openSans;
+      font-size: $fs2-xs;
+      font-weight: $fw-regular;
+    }
+  }
+}
+
+
+.bg_img_html {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url("http://cdn.govexec.com/media/img/upload/2016/07/25/072516computer.jpg");
+}
+
+.bg_img_js {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url('https://habrastorage.org/getpro/habr/post_images/3db/ac4/5df/3dbac45df51c33b0bd63621081afbe29.jpg');
+}
+
+.bg_img_css {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url('https://www.quasa.io/storage/images/news/wlsQ4dkR2XDzfZmi7jui8NwBXvBiyda99dmz9BZz.jpeg');
+}
+
+.bg_img_react {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url('https://kruschecompany.com/wp-content/uploads/2020/10/react-framework-code-on-screen-example-scaled.jpg');
+}
+
+
+@media screen and (max-width: 1100px) {
+  .row {
+    @include flex_wrap(wrap);
+    @include justify_content(center);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .item {
+    max-width: 70%;
+
+    &:not(:last-child) {
+      margin-bottom: $base*7;
+    }
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .item {
+    max-width: 90% !important;
+
+    &:not(:last-child) {
+      margin-bottom: $base*7;
+    }
+  }
+}

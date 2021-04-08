@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -10,9 +15,23 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-scroll": "^1.8.2",
+    "@types/react-slick": "^0.23.4",
+    "@types/slick-carousel": "^1.6.34",
+    "emailjs": "^3.4.0",
+    "emailjs-com": "^2.6.4",
+    "formik": "^2.2.6",
+    "hamburger-react": "^2.4.0",
+    "node-sass": "^5.0.0",
     "react": "^17.0.1",
+    "react-awesome-reveal": "^3.7.1",
     "react-dom": "^17.0.1",
+    "react-reveal": "^1.2.2",
     "react-scripts": "4.0.3",
+    "react-scroll": "^1.8.2",
+    "react-slick": "^0.28.1",
+    "react-waypoint": "^9.0.3",
+    "slick-carousel": "^1.8.1",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -39,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }

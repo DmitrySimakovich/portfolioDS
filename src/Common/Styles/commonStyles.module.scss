@@ -1,0 +1,108 @@
+@import "mixins";
+@import "variables";
+
+.section_outer {
+  margin-top: $padding-vertical-lg;
+  margin-bottom: $padding-vertical-lg;
+}
+
+.section__outer {
+  @include pdg_top_bot__section_outer;
+
+  &__short {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+}
+
+.section__inner {
+  @include pdg_rt_lf__section_inner;
+  @include mrg_rt_lf__auto;
+  @include box_sizing(border-box);
+
+  width: 100%;
+  max-width: $base*285;
+
+  &_wide {
+    max-width: 1300px;
+  }
+}
+
+.bgc_att__w {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $base*285;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__narrow {
+    max-width: $base*237;
+    width: 95%;
+  }
+
+}
+
+.mb_none {
+  margin-bottom: 0 !important;
+}
+
+.mt_none {
+  margin-top: 0 !important;
+}
+
+.pb_none {
+  padding-bottom: 0 !important;
+}
+
+.pt_none {
+  padding-top: 0 !important;
+}
+
+.pad_none {
+  padding: 0;
+}
+
+.bgc_primary {
+  background-color: $color_bgc__primary;
+}
+
+.bgc_secondary {
+  background-color: $color_bgc__secondary;
+}
+
+.bgc_nav {
+  background-color: $color_nav_black;
+}
+
+.in {
+  @include transition (all, $transition);
+  @include opacity(1);
+  visibility: inherit;
+}
+
+.out {
+  @include transition (all, $transition);
+  @include opacity(0);
+  visibility: hidden;
+}
+
+.b_shad {
+  @include box_shadow(0px, 0px, 10px, rgba(30, 30, 30, .5));
+}
+
+.w_sm {
+  @include border_radius(5px);
+  width: 95%;
+  max-width: 950px;
+  margin: 0 auto;
+}

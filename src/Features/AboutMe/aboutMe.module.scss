@@ -1,0 +1,148 @@
+@import "src/Common/Styles/variables";
+@import "src/Common/Styles/mixins";
+
+.icon {
+  color: #fff;
+
+  &:hover {
+    color: $color_elements;
+  }
+}
+
+.section_aboutMe {
+  @include box_sizing(border-box);
+  @include border_radius(5px);
+  margin: -$base*50 auto 0;
+  position: relative;
+
+  padding: $base*12;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    @include box_shadow(0px, 10px, 100px, darken($color_border__primary, 10%));
+  }
+}
+
+.wrap_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.row_content {
+  flex-basis: 50%;
+
+  &__text {
+    max-width: 490px;
+
+    h2 {
+      font-size: $fs2-lg;
+      font-weight: $fw-medium;
+      color: #fff;
+    }
+
+    p {
+      @include openSans;
+      font-size: $fs2-md;
+      font-weight: $fw-light;
+      color: $color_text__secondary;
+      line-height: 36px;
+    }
+  }
+
+  &__icons_box {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+
+      &:not(:last-child) {
+        padding-right: 15px;
+      }
+
+      display: inline-block;
+    }
+  }
+}
+
+.row_wrap_image {
+  max-width: 50%;
+
+  .br {
+    @include border_radius(50%);
+    padding: 5px;
+    border: 2px solid $color_border__primary;
+
+    div {
+      max-width: 100%;
+      @include border_radius(50%);
+      @include box_sizing(border-box);
+      @include background_size(cover);
+
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
+      background-image: url("../../assets/E8q5sx3tjV0.jpg");
+      background-position: 40% 0%;
+    }
+  }
+
+}
+
+@media (max-width: 726px) {
+  .wrap_row {
+    justify-content: center;
+    align-items: center;
+
+    .row_content {
+      flex-basis: 100%;
+      text-align: center;
+    }
+  }
+
+  .row_wrap_image {
+    display: none;
+  }
+}
+
+.content {
+  flex-basis: 50%;
+  position: relative;
+
+
+  h3 {
+    color: #fff;
+    font-size: $fs-lg;
+    font-weight: $fw-medium;
+  }
+
+  p {
+    @include openSans;
+    color: $color_text__secondary;
+    font-size: $fs-md;
+    font-weight: $fw-light;
+    line-height: 1.8;
+  }
+
+}
+
+.avatar__wrap {
+  img {
+    @include border_radius(50%);
+    padding: 5px;
+    border: 1px solid $color_text__secondary;
+    width: 300px;
+    height: 300px;
+  }
+}

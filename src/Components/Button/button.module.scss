@@ -1,0 +1,36 @@
+@import "./src/Common/Styles/variables";
+@import "./src/Common/Styles/mixins";
+
+.btn {
+  font-size: $fs-sm;
+  font-weight: $fw-regular;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: $base*3 $base*12;
+  @include border_radius(2px);
+  border: 1px solid transparent;
+  outline: none;
+  @include transition(all, $transition);
+  cursor: pointer;
+
+  &:hover {
+    @include transform(translateY(-5px));
+    @include box_shadow(0px, 4px, 8px, rgba(134, 151, 168, .1));
+  }
+
+  &__primary {
+    background-color: $color_elements!important;
+  }
+
+  &__secondary {
+    border: 1px solid #fff;
+    background-color: transparent;
+  }
+
+  &__disable {
+    @include transform(none!important);
+    @include box_shadow__none(none!important);
+    background-color: $color_border__primary;
+  }
+}

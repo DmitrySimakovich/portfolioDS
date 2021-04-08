@@ -1,0 +1,10 @@
+@import "src/Common/Styles/mixins";
+
+.footer {
+  background-color: $color_bgc__secondary;
+  color: $color_text__secondary;
+  display: flex;
+  @include justify_content(center);
+  padding-top: $base*10;
+  padding-bottom: $base*10;
+}

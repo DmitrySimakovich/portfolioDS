@@ -1,0 +1,63 @@
+@import "src/Common/Styles/variables";
+@import "src/Common/Styles/mixins";
+
+.title {
+  display: flex;
+  @include flex_direction(column);
+  @include align_items(center);
+  text-align: center;
+
+  &__hero {
+
+    h2 {
+      color: #fff;
+      font-size: $fs-md;
+      font-weight: $fw-light;
+      padding-bottom: $padding-vertical-sm;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      color: #fff;
+      font-size: $fs-xl;
+      font-weight: $fw-light;
+
+      &::after {
+        @include divider($padding-vertical-sm+($fs-xl))
+      }
+    }
+  }
+
+  &__primary {
+    h2 {
+      color: $color_text__primary;
+      font-size: $fs-sm;
+      font-weight: $fw-regular;
+      padding-bottom: $padding-vertical-xs;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      color: #fff;
+      font-size: $fs-lg;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+
+      &::after {
+        @include divider($padding-vertical-xs+($fs-lg))
+      }
+    }
+  }
+
+  &__secondary {
+    h1 {
+      color: #fff;
+      font-weight: $fw-medium;
+      font-size: $fs-md;
+      margin-bottom: 1.5rem!important;
+    }
+  }
+}

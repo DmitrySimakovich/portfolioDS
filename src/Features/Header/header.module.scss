@@ -1,0 +1,37 @@
+@import "src/Common/Styles/variables";
+@import "src/Common/Styles/mixins";
+
+.section_header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/IMG_4861.JPG');
+  @include background_size(cover);
+  background-position: 50% 53%;
+  background-attachment: fixed;
+
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+
+  display: flex;
+  @include justify_content(center);
+  @include align_items(center);
+
+
+  .wrapTitle {
+    padding: 0 15px;
+    text-align: center;
+    @include opacity(0);
+    @include transition (all, $transition);
+  }
+
+  &__in {
+    .wrapTitle {
+      @include opacity(1);
+      @include transition (all, $transition);
+    }
+  }
+}
+
+.waypoint {
+  position: absolute;
+  top: 10px;
+}

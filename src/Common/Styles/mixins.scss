@@ -1,0 +1,156 @@
+@import "src/Common/Styles/variables";
+
+@mixin divider($top) {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -30px;
+  width: 100%;
+  height: 1px;
+  background: $color_divider;
+}
+
+@mixin divider_sideBar() {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -5px;
+  height: 1px;
+  background: $color_divider;
+}
+
+
+@mixin openSans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/* Padding & margin */
+@mixin pdg_rt_lf__section_inner {
+  padding-right: $base*4;
+  padding-left: $base*4;
+}
+
+@mixin pdg_top_bot__section_outer {
+  padding-top: $base*20;
+  padding-bottom: $base*20;
+}
+
+
+@mixin mrg_rt_lf__auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*cross browser*/
+@mixin box_sizing($value) {
+  box-sizing: $value;
+  -moz-box-sizing: $value;
+  -webkit-box-sizing: $value;
+}
+
+@mixin border_radius($value) {
+  border-radius: $value;
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+}
+
+@mixin box_shadow($x, $y, $blur, $color) {
+  box-shadow: $x $y $blur $color;
+  -webkit-box-shadow: $x $y $blur $color;
+  -moz-box-shadow: $x $y $blur $color;
+}
+
+@mixin box_shadow__none($value) {
+  box-shadow: $value;
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+}
+
+@mixin background_size($value) {
+  background-size: $value;
+  -webkit-background-size: $value;
+  -o-background-size: $value;
+  -moz-background-size: $value;
+}
+
+@mixin transition($property, $value) {
+  transition: $property, $value;
+  -webkit-transition: $property, $value;
+  -o-transition: $property, $value;
+  -moz-transition: $property, $value;
+}
+
+@mixin transition_ease($property, $value, $function) {
+  transition: $property, $value, $function;
+  -webkit-transition: $property, $value, $function;
+  -o-transition: $property, $value, $function;
+  -moz-transition: $property, $value, $function;
+}
+
+@mixin opacity($value) {
+  opacity: $value;
+  -moz-opacity: $value;
+  filter: alpha(opacity=$value*100);
+}
+
+@mixin transform($value) {
+  transform: $value;
+  -ms-transform: $value;
+  -webkit-transform: $value;
+  -o-transform: $value;
+  -moz-transform: $value;
+}
+
+@mixin flex_basis($value) {
+  flex-basis: $value;
+  -webkit-flex-basis: $value;
+}
+
+@mixin flex_wrap($value) {
+  flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+}
+
+@mixin justify_content($value) {
+  justify-content: $value;
+  -webkit-justify-content: $value;
+}
+
+@mixin align_items($value) {
+  align-items: $value;
+  -webkit-align-items: $value;
+}
+
+@mixin flex_direction($value) {
+  flex-direction: $value;
+  -webkit-flex-direction: $value;
+}
+
+@mixin background_origin($value) {
+  background-origin: $value;
+  -webkit-background-origin: $value;
+  -o-background-origin: $value;
+  -moz-background-origin: $value;
+}
+
+@mixin transform_style($value) {
+  transform-style: $value;
+  -webkit-transform-style: $value;
+  -moz-transform-style: $value;
+}
+
+@mixin backface_visibility($value) {
+  backface-visibility: $value;
+  -webkit-backface-visibility: $value;
+  -moz-backface-visibility: $value;
+}
+
+@mixin object_fit($value) {
+  object-fit: $value;
+  -o-object-fit: $value;
+}
+
+
