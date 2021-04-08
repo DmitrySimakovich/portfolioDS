@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/portfolioDS/static/css/main.8c23e17b.chunk.css",
+    "main.js": "/portfolioDS/static/js/main.cad03db1.chunk.js",
+    "main.js.map": "/portfolioDS/static/js/main.cad03db1.chunk.js.map",
+    "runtime-main.js": "/portfolioDS/static/js/runtime-main.2126f998.js",
+    "runtime-main.js.map": "/portfolioDS/static/js/runtime-main.2126f998.js.map",
+    "static/css/2.41950d88.chunk.css": "/portfolioDS/static/css/2.41950d88.chunk.css",
+    "static/js/2.a8982d1a.chunk.js": "/portfolioDS/static/js/2.a8982d1a.chunk.js",
+    "static/js/2.a8982d1a.chunk.js.map": "/portfolioDS/static/js/2.a8982d1a.chunk.js.map",
+    "static/js/3.229baf1a.chunk.js": "/portfolioDS/static/js/3.229baf1a.chunk.js",
+    "static/js/3.229baf1a.chunk.js.map": "/portfolioDS/static/js/3.229baf1a.chunk.js.map",
+    "index.html": "/portfolioDS/index.html",
+    "static/css/2.41950d88.chunk.css.map": "/portfolioDS/static/css/2.41950d88.chunk.css.map",
+    "static/css/main.8c23e17b.chunk.css.map": "/portfolioDS/static/css/main.8c23e17b.chunk.css.map",
+    "static/js/2.a8982d1a.chunk.js.LICENSE.txt": "/portfolioDS/static/js/2.a8982d1a.chunk.js.LICENSE.txt",
+    "static/media/aboutMe.module.scss": "/portfolioDS/static/media/E8q5sx3tjV0.4a45e190.jpg",
+    "static/media/header.module.scss": "/portfolioDS/static/media/IMG_4861.5c05f5ad.JPG",
+    "static/media/hireMe.module.scss": "/portfolioDS/static/media/IMG_9908 (2).3f2e4017.JPG",
+    "static/media/giphy.9b639036.gif": "/portfolioDS/static/media/giphy.9b639036.gif",
+    "static/media/image_fitnessHouse.6c1b1de4.png": "/portfolioDS/static/media/image_fitnessHouse.6c1b1de4.png",
+    "static/media/image_todoList.9061f868.png": "/portfolioDS/static/media/image_todoList.9061f868.png",
+    "static/media/index.scss": "/portfolioDS/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2126f998.js",
+    "static/css/2.41950d88.chunk.css",
+    "static/js/2.a8982d1a.chunk.js",
+    "static/css/main.8c23e17b.chunk.css",
+    "static/js/main.cad03db1.chunk.js"
+  ]
+}
