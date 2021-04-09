@@ -1,12 +1,16 @@
-import React, {FC} from "react";
-import {Field, Form, Formik, useFormik} from 'formik';
+import React, {FC, useEffect, useState} from "react";
+import {useFormik} from 'formik';
+
+import {faCheckCircle as successfullySent} from '@fortawesome/free-regular-svg-icons'
+import {faExclamationCircle as errorSent} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 import * as emailJs from 'emailjs-com'
 
+import loader from '../../assets/loader.gif';
 
 import style from './contactMe.module.scss';
 import Button from "../../Components/Button/button";
-
-const Fade = require('react-reveal/Fade');
 
 type FormikErrorType = {
     name?: string,
@@ -14,11 +18,55 @@ type FormikErrorType = {
     subject?: string,
     message?: string,
 }
+type SentType = 'Email sent!' | 'Error!'
+
+type PopupFormType = {
+    visible: boolean
+    value: SentType
+    resetValueHandler: (value: boolean) => void
+}
+
+const PopupForm: FC<PopupFormType> = ({value, visible, resetValueHandler}) => {
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => resetValueHandler(false), 3500)
+
+        return () => {
+            clearTimeout(timeOutId)
+        }
+    }, [visible])
+
+
+    return (
+        <>
+            {
+                visible &&
+                <div
+                    className={`${style.popup__content} ${value === 'Email sent!' ? style.popup__content__success : style.popup__content__error}`}>
+                    {value}
+                    {
+                        value === 'Email sent!' ?
+                            <FontAwesomeIcon icon={successfullySent} size={"1x"}/> :
+                            <FontAwesomeIcon icon={errorSent} size={"1x"}/>
+                    }
+                </div>
+            }
+        </>
+    )
+}
 
 const ContactForm: FC = () => {
     const SERVICE_ID = 'service_vg6n1ni'
     const TEMPLATE_ID = 'template_iq91rc7'
     const USER_ID = 'user_uqSYJko8sJjERydu3Baf7'
+
+    const [value, setValue] = useState<SentType>('Email sent!')
+    const [visible, setVisible] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+
+    const resetValueHandler = (value: boolean) => {
+        setVisible(value)
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -51,6 +99,7 @@ const ContactForm: FC = () => {
             return errors
         },
         onSubmit: values => {
+            setLoading(true)
             emailJs.send(
                 SERVICE_ID,
                 TEMPLATE_ID,
@@ -61,9 +110,19 @@ const ContactForm: FC = () => {
                     message: values.message,
                 },
                 USER_ID)
-                .then(res => console.log(res))
-                .catch(err => console.log(err))
-            formik.resetForm()
+                .then(res => {
+                    setValue('Email sent!')
+                    setVisible(true)
+                })
+                .catch(err => {
+                    setValue('Error!')
+                    console.log(err)
+                    setVisible(true)
+                })
+                .finally(() => {
+                    setLoading(false)
+                    formik.resetForm()
+                })
         }
     })
 
@@ -106,8 +165,6 @@ const ContactForm: FC = () => {
                         </div>
                     </div>
                 </div>
-
-
                 <div className={style.row_form}>
                     <div className={`${style.col_form} ${style.col_form__wide}`}>
                         <div
@@ -121,7 +178,6 @@ const ContactForm: FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={style.row_form}>
                     <div className={`${style.col_form} ${style.col_form__wide}`}>
                         <div
@@ -134,11 +190,18 @@ const ContactForm: FC = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={style.btnWrap}>
-                    <Button buttonType={isEmpty(formik.errors) ? 'primary' : 'disable'} title={'send'}/>
+                    {
+                        loading ?
+                            <img src={loader} alt="" className={style.loader}/> :
+                            <Button buttonType={isEmpty(formik.errors) ? 'primary' : 'disable'} title={'send'}/>
+                    }
                 </div>
             </form>
+
+            <div className={`${style.form_popup} ${visible ? style.form_popup__open : style.form_popup__close}`}>
+                <PopupForm visible={visible} value={value} resetValueHandler={resetValueHandler}/>
+            </div>
         </div>
 
     )

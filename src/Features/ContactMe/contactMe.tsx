@@ -32,7 +32,7 @@ const _render_GetInTouch_items = () => {
                     <FontAwesomeIcon icon={faMobileAlt} size={'2x'} className={style.icon_mb}/>
                     <div className={style.item_content}>
                         <a href="tel:+79119968902">8-911-996-89-02</a>
-                        <p>Call Us</p>
+                        <p>Call me</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ const _render_GetInTouch_items = () => {
                     <FontAwesomeIcon icon={faEnvelope} size={'2x'} className={style.icon_mb}/>
                     <div className={style.item_content}>
                         <a href="mailto:dmitry.a.simakovich@gmail.com">dmitry.a.simakovich@gmail.com</a>
-                        <p>Email Us</p>
+                        <p>Email me</p>
                     </div>
                 </div>
             </div>
