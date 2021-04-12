@@ -126,7 +126,7 @@ const SliderContainer: FC = () => {
                 <SlideItem index={3} title={'Educational project "Social network"'}
                            description={'In this project, I have mastered the basic architectural concepts of building a SPA based on CRA. The project is currently under development, the existing code can be found by clicking the button.'}
                            urlImage={urlSocialNetwork}
-                           urlCode={''}/>
+                           urlCode={'https://github.com/DmitrySimakovich/social'}/>
             </Slider>
         </>
     )

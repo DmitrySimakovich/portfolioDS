@@ -1,16 +1,15 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import {useFormik} from 'formik';
+import * as emailJs from 'emailjs-com'
+
+import Button from "../../Components/Button/button";
 
 import {faCheckCircle as successfullySent} from '@fortawesome/free-regular-svg-icons'
 import {faExclamationCircle as errorSent} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-import * as emailJs from 'emailjs-com'
-
 import loader from '../../assets/loader.gif';
-
 import style from './contactMe.module.scss';
-import Button from "../../Components/Button/button";
 
 type FormikErrorType = {
     name?: string,
@@ -19,14 +18,15 @@ type FormikErrorType = {
     message?: string,
 }
 type SentType = 'Email sent!' | 'Error!'
-
 type PopupFormType = {
     visible: boolean
     value: SentType
     resetValueHandler: (value: boolean) => void
 }
+type loadingType = 'inProgress' | 'ended'
 
-const PopupForm: FC<PopupFormType> = ({value, visible, resetValueHandler}) => {
+const PopupForm = React.memo(function PopupForm({value, visible, resetValueHandler}: PopupFormType) {
+
 
     useEffect(() => {
         const timeOutId = setTimeout(() => resetValueHandler(false), 3500)
@@ -34,26 +34,26 @@ const PopupForm: FC<PopupFormType> = ({value, visible, resetValueHandler}) => {
         return () => {
             clearTimeout(timeOutId)
         }
-    }, [visible])
+    }, [visible, resetValueHandler])
 
+    const styleOptions = value === 'Email sent!' ? style.popup__content__success : style.popup__content__error
 
     return (
         <>
             {
-                visible &&
                 <div
-                    className={`${style.popup__content} ${value === 'Email sent!' ? style.popup__content__success : style.popup__content__error}`}>
+                    className={`${style.popup__content} ${styleOptions}`}>
                     {value}
                     {
                         value === 'Email sent!' ?
                             <FontAwesomeIcon icon={successfullySent} size={"1x"}/> :
-                            <FontAwesomeIcon icon={errorSent} size={"1x"}/>
+                            <FontAwesomeIcon icon={errorSent} size={"1x"} onClick={() => resetValueHandler(false)}/>
                     }
                 </div>
             }
         </>
     )
-}
+})
 
 const ContactForm: FC = () => {
     const SERVICE_ID = 'service_vg6n1ni'
@@ -61,12 +61,12 @@ const ContactForm: FC = () => {
     const USER_ID = 'user_uqSYJko8sJjERydu3Baf7'
 
     const [value, setValue] = useState<SentType>('Email sent!')
-    const [visible, setVisible] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(false) //
+    const [loadingForm, setLoading] = useState<loadingType>('ended') //
 
-    const resetValueHandler = (value: boolean) => {
+    const resetValueHandler = useCallback((value: boolean) => {
         setVisible(value)
-    }
+    }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -99,7 +99,7 @@ const ContactForm: FC = () => {
             return errors
         },
         onSubmit: values => {
-            setLoading(true)
+            setLoading('inProgress')
             emailJs.send(
                 SERVICE_ID,
                 TEMPLATE_ID,
@@ -109,7 +109,8 @@ const ContactForm: FC = () => {
                     subject: values.subject,
                     message: values.message,
                 },
-                USER_ID)
+                USER_ID
+            )
                 .then(res => {
                     setValue('Email sent!')
                     setVisible(true)
@@ -120,7 +121,7 @@ const ContactForm: FC = () => {
                     setVisible(true)
                 })
                 .finally(() => {
-                    setLoading(false)
+                    setLoading('ended')
                     formik.resetForm()
                 })
         }
@@ -146,7 +147,8 @@ const ContactForm: FC = () => {
                             className={`${style.input} ${formik.touched.name && formik.errors.name ? style.input__err : null}`}>
                             <input placeholder='Your Name'
                                    {...formik.getFieldProps('name')}
-                                   onBlur={formik.handleBlur}/>
+                                   onBlur={formik.handleBlur}
+                                   disabled={loadingForm==='inProgress'}/>
 
                             {formik.touched.name && formik.errors.name ?
                                 <div className={style.error_text}>{formik.errors.name}</div> : null}
@@ -158,7 +160,8 @@ const ContactForm: FC = () => {
                             className={`${style.input} ${formik.touched.email && formik.errors.email ? style.input__err : null}`}>
                             <input placeholder='Your Email'
                                    {...formik.getFieldProps('email')}
-                                   onBlur={formik.handleBlur}/>
+                                   onBlur={formik.handleBlur}
+                                   disabled={loadingForm==='inProgress'}/>
 
                             {formik.touched.email && formik.errors.email ?
                                 <div className={style.error_text}>{formik.errors.email}</div> : null}
@@ -171,7 +174,8 @@ const ContactForm: FC = () => {
                             className={`${style.input} ${formik.touched.subject && formik.errors.subject ? style.input__err : null}`}>
                             <input placeholder='Your Subject'
                                    {...formik.getFieldProps('subject')}
-                                   onBlur={formik.handleBlur}/>
+                                   onBlur={formik.handleBlur}
+                                   disabled={loadingForm==='inProgress'}/>
 
                             {formik.touched.subject && formik.errors.subject ?
                                 <div className={style.error_text}>{formik.errors.subject}</div> : null}
@@ -184,18 +188,19 @@ const ContactForm: FC = () => {
                             className={`${style.input} ${formik.touched.message && formik.errors.message ? style.input__err : null}`}>
                                 <textarea placeholder='Your Message'
                                           className={style.input} {...formik.getFieldProps('message')}
-                                          onBlur={formik.handleBlur}/>
+                                          onBlur={formik.handleBlur}
+                                          disabled={loadingForm==='inProgress'}/>
                             {formik.touched.message && formik.errors.message ?
                                 <div className={style.error_text}>{formik.errors.message}</div> : null}
                         </div>
                     </div>
                 </div>
-                <div className={style.btnWrap}>
-                    {
-                        loading ?
-                            <img src={loader} alt="" className={style.loader}/> :
-                            <Button buttonType={isEmpty(formik.errors) ? 'primary' : 'disable'} title={'send'}/>
-                    }
+
+                <div className={style.submit}>
+                    <img src={loader} alt="" className={`${style.loader} ${loadingForm === 'inProgress' ? style.loader__open : style.loader__close}`}/>
+                    <div className={`${style.btn} ${loadingForm === 'ended' ? style.btn__open : style.btn__close}`}>
+                        <Button buttonType={isEmpty(formik.errors) ? 'primary' : 'disable'} title={'send'}/>
+                    </div>
                 </div>
             </form>
 

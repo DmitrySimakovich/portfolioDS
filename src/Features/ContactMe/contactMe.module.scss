@@ -190,18 +190,49 @@
   margin-right: 15px;
 }
 
-.btnWrap {
+.submit {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   @include justify_content(center);
   margin-top: $base*6;
+
+  .btn__open {
+    display: block;
+    opacity: 1;
+    transition: $transition;
+
+  }
+
+  .btn__close {
+    display: none;
+    opacity: 0;
+    transition: $transition;
+
+  }
 }
+
 .loader {
+  position: absolute;
   padding-top: $base;
   width: 50px;
-  height: 17px;
+  height: 50px;
+
+  &__open {
+    display: block;
+    opacity: 1;
+    transition: $transition;
+  }
+
+  &__close {
+    display: none;
+    opacity: 0;
+    transition: $transition;
+  }
+
 }
+
 .error_text {
   @include box_sizing(border-box);
   font-size: $fs2-sm;
@@ -214,7 +245,7 @@
 .form_popup {
   position: absolute;
   width: 100%;
-  bottom: -$base*20;
+  bottom: -$base*15;
 
   &__close {
     opacity: 0;
@@ -223,7 +254,7 @@
   }
 
   &__open {
-    opacity: 1!important;
+    opacity: 1 !important;
     transform: translateY(0);
     transition: all $transition_long;
   }
